@@ -1,0 +1,66 @@
+@model AtkSystem.Web.Models.UserViewModel
+@{
+    ViewData["Title"] = "ユーザー登録";
+}
+
+<div class="row justify-content-center">
+    <div class="col-md-8">
+        <div class="glass-card p-5">
+            <h2 class="text-center mb-4 text-light">ユーザー新規登録</h2>
+
+            <form asp-action="Create" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        <label asp-for="EmployeeId" class="form-label text-secondary">社員ID</label>
+                        <input asp-for="EmployeeId" class="form-control bg-transparent text-light border-secondary"
+                               style="border-color: var(--glass-border);" placeholder="EMPxxx" />
+                        <span asp-validation-for="EmployeeId" class="text-danger small"></span>
+                    </div>
+                    <div class="col-md-6">
+                         <label asp-for="FullName" class="form-label text-secondary">氏名</label>
+                        <input asp-for="FullName" class="form-control bg-transparent text-light border-secondary"
+                               style="border-color: var(--glass-border);" placeholder="山田 太郎" />
+                        <span asp-validation-for="FullName" class="text-danger small"></span>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label asp-for="Password" class="form-label text-secondary">パスワード</label>
+                    <input asp-for="Password" class="form-control bg-transparent text-light border-secondary"
+                           style="border-color: var(--glass-border);" placeholder="初期パスワード" />
+                    <span asp-validation-for="Password" class="text-danger small"></span>
+                    <div class="form-text text-secondary opacity-75">新規登録時は必須です。</div>
+                </div>
+
+                <div class="row mb-4">
+                    <div class="col-md-6">
+                        <label asp-for="DepartmentId" class="form-label text-secondary">所属部署</label>
+                        <select asp-for="DepartmentId" class="form-select bg-transparent text-light border-secondary" 
+                                asp-items="ViewBag.Departments" style="border-color: var(--glass-border);">
+                            <option value="">-- 選択してください --</option>
+                        </select>
+                         <span asp-validation-for="DepartmentId" class="text-danger small"></span>
+                    </div>
+                    <div class="col-md-6">
+                        <label asp-for="Role" class="form-label text-secondary">権限</label>
+                        <select asp-for="Role" class="form-select bg-transparent text-light border-secondary"
+                                asp-items="Html.GetEnumSelectList<AtkSystem.Core.Enums.Role>()" style="border-color: var(--glass-border);">
+                        </select>
+                         <span asp-validation-for="Role" class="text-danger small"></span>
+                    </div>
+                </div>
+
+                <div class="d-flex justify-content-end gap-2">
+                    <a asp-action="Index" class="btn btn-outline-light">キャンセル</a>
+                    <button type="submit" class="btn btn-premium px-4">登録</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

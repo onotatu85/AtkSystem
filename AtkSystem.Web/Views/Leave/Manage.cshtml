@@ -1,0 +1,89 @@
+@model IEnumerable<AtkSystem.Core.Entities.LeaveRequest>
+@{
+    ViewData["Title"] = "休暇承認管理";
+}
+
+<div class="container py-4">
+    <h2 class="text-light mb-4">承認待ちの申請</h2>
+
+    @if (!Model.Any())
+    {
+        <div class="glass-card p-5 text-center text-secondary">
+            <h4>承認待ちの申請はありません</h4>
+            <p>全ての確認が完了しています！</p>
+        </div>
+    }
+    else
+    {
+        <div class="glass-card p-4">
+            <div class="table-responsive">
+                <table class="table table-premium align-middle mb-0">
+                    <thead>
+                        <tr>
+                            <th>申請者</th>
+                            <th>種類</th>
+                            <th>期間</th>
+                            <th>理由</th>
+                            <th>申請日</th>
+                            <th>操作</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <div class="avatar-circle me-2 bg-secondary text-white rounded-circle d-flex align-items-center justify-content-center" style="width: 32px; height: 32px;">
+                                            @item.User?.FullName.Substring(0, 1)
+                                        </div>
+                                        <div>
+                                            <div class="fw-bold">@item.User?.FullName</div>
+                                            <div class="small text-secondary">@item.User?.EmployeeId</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td>@GetLeaveTypeText(item.LeaveType)</td>
+                                <td>
+                                    @item.StartDate.ToString("MM/dd") - @item.EndDate.ToString("MM/dd")
+                                    <div class="small text-secondary">
+                                        @((item.EndDate.DayNumber - item.StartDate.DayNumber + 1)) 日間
+                                    </div>
+                                </td>
+                                <td>@item.Reason</td>
+                                <td>@item.CreatedAt.ToLocalTime().ToString("MM/dd HH:mm")</td>
+                                <td>
+                                    <div class="d-flex gap-2">
+                                        <form asp-action="Approve" asp-route-id="@item.Id" method="post">
+                                            <button type="submit" class="btn btn-sm btn-success">
+                                                <i class="bi bi-check-lg"></i> 承認
+                                            </button>
+                                        </form>
+                                        <form asp-action="Reject" asp-route-id="@item.Id" method="post">
+                                            <button type="submit" class="btn btn-sm btn-danger">
+                                                <i class="bi bi-x-lg"></i> 却下
+                                            </button>
+                                        </form>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    }
+</div>
+
+@functions {
+    string GetLeaveTypeText(AtkSystem.Core.Enums.LeaveType type)
+    {
+        return type switch
+        {
+            AtkSystem.Core.Enums.LeaveType.Paid => "有給休暇",
+            AtkSystem.Core.Enums.LeaveType.Sick => "病欠",
+            AtkSystem.Core.Enums.LeaveType.Special => "特別休暇",
+            _ => type.ToString()
+        };
+    }
+}

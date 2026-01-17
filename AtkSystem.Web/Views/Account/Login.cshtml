@@ -1,0 +1,54 @@
+@model AtkSystem.Web.Models.LoginViewModel
+@{
+    ViewData["Title"] = "ログイン";
+}
+
+<div class="row justify-content-center align-items-center" style="min-height: 80vh;">
+    <div class="col-md-5 col-lg-4">
+        <div class="glass-card p-5">
+            <div class="text-center mb-5">
+                <h1 class="h3 mb-3 fw-bold">ようこそ</h1>
+                <p class="text-secondary">アカウントにサインインしてください</p>
+            </div>
+
+            <form asp-action="Login" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+                
+                <div class="mb-4">
+                    <label asp-for="EmployeeId" class="form-label text-secondary">社員ID</label>
+                    <div class="input-group">
+                        <span class="input-group-text bg-transparent border-end-0 text-secondary" style="border-color: var(--glass-border);">
+                            <i class="bi bi-person"></i>
+                        </span>
+                        <input asp-for="EmployeeId" class="form-control bg-transparent text-light border-start-0 ps-0" 
+                               style="border-color: var(--glass-border); color: #fff;" placeholder="社員IDを入力" />
+                    </div>
+                    <span asp-validation-for="EmployeeId" class="text-danger small"></span>
+                </div>
+
+                <div class="mb-5">
+                    <label asp-for="Password" class="form-label text-secondary">パスワード</label>
+                    <div class="input-group">
+                        <span class="input-group-text bg-transparent border-end-0 text-secondary" style="border-color: var(--glass-border);">
+                            <i class="bi bi-lock"></i>
+                        </span>
+                        <input asp-for="Password" class="form-control bg-transparent text-light border-start-0 ps-0" 
+                               style="border-color: var(--glass-border); color: #fff;" placeholder="パスワードを入力" />
+                    </div>
+                    <span asp-validation-for="Password" class="text-danger small"></span>
+                </div>
+
+                <button type="submit" class="btn btn-premium w-100 py-3 mb-4">
+                    ログイン
+                </button>
+            </form>
+        </div>
+        <div class="text-center mt-4">
+            <p class="text-secondary small">デモ用アカウント: EMP001 (admin123) / EMP002 (user123)</p>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,88 @@
+@model IEnumerable<AtkSystem.Core.Entities.LeaveRequest>
+@{
+    ViewData["Title"] = "休暇申請一覧";
+}
+
+<div class="row justify-content-center">
+    <div class="col-lg-10">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2 class="text-light">休暇申請一覧</h2>
+            <a asp-action="Create" class="btn btn-premium">
+                <i class="bi bi-plus-lg me-2"></i>新規申請
+            </a>
+        </div>
+
+        <div class="glass-card p-4">
+            <div class="table-responsive">
+                <table class="table table-premium align-middle mb-0">
+                    <thead>
+                        <tr>
+                            <th>種類</th>
+                            <th>期間</th>
+                            <th>理由</th>
+                            <th>申請日</th>
+                            <th>ステータス</th>
+                            <th>承認者</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>@GetLeaveTypeText(item.LeaveType)</td>
+                                <td>
+                                    @item.StartDate.ToString("yyyy/MM/dd") - @item.EndDate.ToString("yyyy/MM/dd")
+                                </td>
+                                <td>@item.Reason</td>
+                                <td>@item.CreatedAt.ToLocalTime().ToString("yyyy/MM/dd HH:mm")</td>
+                                <td>
+                                    <span class="status-badge @GetStatusClass(item.Status)">
+                                        @GetStatusText(item.Status)
+                                    </span>
+                                </td>
+                                <td>
+                                    @(item.ApproverUser?.FullName ?? "-")
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@functions {
+    string GetStatusClass(AtkSystem.Core.Enums.LeaveStatus status)
+    {
+        return status switch
+        {
+            AtkSystem.Core.Enums.LeaveStatus.Approved => "status-work",
+            AtkSystem.Core.Enums.LeaveStatus.Rejected => "status-end",
+            AtkSystem.Core.Enums.LeaveStatus.Pending => "status-break",
+            _ => "status-end"
+        };
+    }
+
+    string GetStatusText(AtkSystem.Core.Enums.LeaveStatus status)
+    {
+        return status switch
+        {
+            AtkSystem.Core.Enums.LeaveStatus.Approved => "承認済み",
+            AtkSystem.Core.Enums.LeaveStatus.Rejected => "却下",
+            AtkSystem.Core.Enums.LeaveStatus.Pending => "承認待ち",
+             _ => status.ToString()
+        };
+    }
+
+    string GetLeaveTypeText(AtkSystem.Core.Enums.LeaveType type)
+    {
+        return type switch
+        {
+            AtkSystem.Core.Enums.LeaveType.Paid => "有給休暇",
+            AtkSystem.Core.Enums.LeaveType.Sick => "病欠",
+            AtkSystem.Core.Enums.LeaveType.Special => "特別休暇",
+            _ => type.ToString()
+        };
+    }
+}

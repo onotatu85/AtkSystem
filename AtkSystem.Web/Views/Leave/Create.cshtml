@@ -1,0 +1,58 @@
+@model AtkSystem.Web.Models.LeaveRequestViewModel
+@{
+    ViewData["Title"] = "休暇申請";
+}
+
+<div class="row justify-content-center">
+    <div class="col-md-8 col-lg-6">
+        <div class="glass-card p-5">
+            <h2 class="text-center mb-4 text-light">休暇申請</h2>
+
+            <form asp-action="Create" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                <div class="mb-4">
+                    <label asp-for="LeaveType" class="form-label text-secondary">休暇種類</label>
+                    <select asp-for="LeaveType" class="form-select bg-transparent text-light border-secondary"
+                            style="border-color: var(--glass-border);">
+                            <option value="0">有給休暇</option>
+                            <option value="1">病欠</option>
+                            <option value="2">特別休暇</option>
+                    </select>
+                    <span asp-validation-for="LeaveType" class="text-danger small"></span>
+                </div>
+
+                <div class="row mb-4">
+                    <div class="col-md-6">
+                        <label asp-for="StartDate" class="form-label text-secondary">開始日</label>
+                        <input asp-for="StartDate" class="form-control bg-transparent text-light border-secondary"
+                               style="border-color: var(--glass-border);" type="date" />
+                        <span asp-validation-for="StartDate" class="text-danger small"></span>
+                    </div>
+                    <div class="col-md-6">
+                        <label asp-for="EndDate" class="form-label text-secondary">終了日</label>
+                        <input asp-for="EndDate" class="form-control bg-transparent text-light border-secondary"
+                               style="border-color: var(--glass-border);" type="date" />
+                        <span asp-validation-for="EndDate" class="text-danger small"></span>
+                    </div>
+                </div>
+
+                <div class="mb-4">
+                    <label asp-for="Reason" class="form-label text-secondary">申請理由</label>
+                    <textarea asp-for="Reason" class="form-control bg-transparent text-light border-secondary" rows="3"
+                              style="border-color: var(--glass-border);"></textarea>
+                    <span asp-validation-for="Reason" class="text-danger small"></span>
+                </div>
+
+                <div class="d-grid gap-2">
+                    <button type="submit" class="btn btn-premium">申請する</button>
+                    <a asp-action="Index" class="btn btn-outline-light">キャンセル</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

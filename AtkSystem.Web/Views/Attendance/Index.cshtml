@@ -1,0 +1,189 @@
+@{
+    ViewData["Title"] = "ダッシュボード";
+    var todayRecord = ViewBag.TodayRecord as AtkSystem.Core.Entities.AttendanceRecord;
+    var monthlyRecords = ViewBag.MonthlyRecords as IEnumerable<AtkSystem.Core.Entities.AttendanceRecord>;
+    
+    bool isClockedIn = todayRecord != null && todayRecord.ClockOutTime == null;
+    bool isOnBreak = todayRecord != null && todayRecord.Status == AtkSystem.Core.Enums.AttendanceStatus.OnBreak;
+    bool isWorkStarted = todayRecord != null;
+    bool isWorkFinished = todayRecord != null && todayRecord.ClockOutTime != null;
+}
+
+<div class="row g-4">
+    <!-- Left Column: Actions -->
+    <div class="col-md-4">
+        <div class="glass-card h-100 p-4 text-center d-flex flex-column justify-content-center">
+            <div class="mb-4">
+                <h5 class="text-light-50 mb-3">現在時刻</h5>
+                <div class="clock-display mb-4" id="liveClock">00:00:00</div>
+                <div class="text-secondary mb-4">@DateTime.Now.ToString("yyyy年MM月dd日 (ddd)")</div>
+
+                @if (User.IsInRole("Admin") || User.IsInRole("Manager"))
+                {
+                    <a asp-action="ExportCsv" class="btn btn-outline-info w-100 mb-3">
+                        <i class="bi bi-download me-2"></i> CSV出力
+                    </a>
+                }
+
+                <div class="d-grid gap-3">
+                    @if (!isClockedIn)
+                    {
+                        <form asp-action="ClockIn" method="post">
+                            <button type="submit" class="btn btn-premium w-100 py-3 @(isWorkFinished ? "disabled" : "")">
+                                <i class="bi bi-play-circle me-2"></i> 出勤
+                            </button>
+                        </form>
+                    }
+                    else if (isClockedIn && !isOnBreak)
+                    {
+                        <form asp-action="StartBreak" method="post">
+                            <button type="submit" class="btn btn-outline-warning w-100 py-2 mb-2">
+                                <i class="bi bi-cup-hot me-2"></i> 休憩開始
+                            </button>
+                        </form>
+                        <form asp-action="ClockOut" method="post">
+                            <button type="submit" class="btn btn-outline-danger w-100 py-3">
+                                <i class="bi bi-stop-circle me-2"></i> 退勤
+                            </button>
+                        </form>
+                    }
+                    else if (isClockedIn && isOnBreak)
+                    {
+                        <div class="alert alert-warning border-0 bg-warning bg-opacity-10 text-warning mb-3">
+                            <i class="bi bi-pause-circle me-2"></i> 休憩中
+                        </div>
+                        <form asp-action="EndBreak" method="post">
+                            <button type="submit" class="btn btn-premium w-100 py-3">
+                                <i class="bi bi-play-circle me-2"></i> 休憩終了
+                            </button>
+                        </form>
+                    }
+                </div>
+            </div>
+            
+            @if (todayRecord != null)
+            {
+                <div class="mt-auto pt-3 border-top border-secondary border-opacity-25">
+                    <div class="d-flex justify-content-between text-secondary small mb-2">
+                        <span>出勤: @(todayRecord.ClockInTime?.ToString("HH:mm") ?? "--:--")</span>
+                        <span>退勤: @(todayRecord.ClockOutTime?.ToString("HH:mm") ?? "--:--")</span>
+                    </div>
+                </div>
+            }
+        </div>
+    </div>
+
+    <!-- Right Column: Status & History -->
+    <div class="col-md-8">
+        <!-- Status Cards -->
+        <div class="row g-3 mb-4">
+            <div class="col-md-4">
+                <div class="glass-card p-3">
+                    <div class="text-secondary small mb-1">今月の勤務日数</div>
+                    <div class="h3 mb-0 text-light">@(monthlyRecords?.Count() ?? 0) <span class="fs-6">日</span></div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="glass-card p-3">
+                    <div class="text-secondary small mb-1">合計勤務時間</div>
+                    <div class="h3 mb-0 text-light">
+                        @{
+                            var totalMinutes = monthlyRecords?.Sum(r => r.TotalWorkMinutes) ?? 0;
+                            var hours = totalMinutes / 60;
+                            var mins = totalMinutes % 60;
+                        }
+                        @hours<span class="fs-6">h</span> @mins<span class="fs-6">m</span>
+                    </div>
+                </div>
+            </div>
+             <div class="col-md-4">
+                <div class="glass-card p-3">
+                    <div class="text-secondary small mb-1">ステータス</div>
+                    <div class="h3 mb-0">
+                        @if (isWorkFinished) { <span class="text-success">退勤済み</span>; }
+                        else if (isOnBreak) { <span class="text-warning">休憩中</span>; }
+                        else if (isClockedIn) { <span class="text-info">勤務中</span>; }
+                        else { <span class="text-secondary">未出勤</span>; }
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- History Table -->
+        <div class="glass-card p-4">
+            <h5 class="text-light mb-4">勤怠履歴</h5>
+            <div class="table-responsive">
+                <table class="table table-premium align-middle mb-0">
+                    <thead>
+                        <tr>
+                            <th>日付</th>
+                            <th>出勤</th>
+                            <th>退勤</th>
+                            <th>休憩</th>
+                            <th>実働</th>
+                            <th>状態</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @if (monthlyRecords != null)
+                        {
+                            @foreach (var record in monthlyRecords)
+                            {
+                                <tr>
+                                    <td>@record.WorkDate.ToString("MM/dd (ddd)")</td>
+                                    <td>@(record.ClockInTime?.ToString("HH:mm") ?? "--:--")</td>
+                                    <td>@(record.ClockOutTime?.ToString("HH:mm") ?? "--:--")</td>
+                                    <td>@record.BreakTimeMinutes m</td>
+                                    <td>@(record.TotalWorkMinutes / 60)h @(record.TotalWorkMinutes % 60)m</td>
+                                    <td>
+                                        <span class="status-badge @GetStatusClass(record.Status)">
+                                            @GetStatusText(record.Status)
+                                        </span>
+                                    </td>
+                                </tr>
+                            }
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        function updateClock() {
+            const now = new Date();
+            const timeString = now.toLocaleTimeString('ja-JP', { hour12: false });
+            document.getElementById('liveClock').textContent = timeString;
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
+    </script>
+}
+
+@functions {
+    string GetStatusClass(AtkSystem.Core.Enums.AttendanceStatus status)
+    {
+        return status switch
+        {
+            AtkSystem.Core.Enums.AttendanceStatus.Work => "status-work",
+            AtkSystem.Core.Enums.AttendanceStatus.Absence => "status-end", 
+            AtkSystem.Core.Enums.AttendanceStatus.Late => "status-break", 
+            AtkSystem.Core.Enums.AttendanceStatus.EarlyLeave => "status-break", 
+            _ => "status-break"
+        };
+    }
+    
+    string GetStatusText(AtkSystem.Core.Enums.AttendanceStatus status)
+    {
+        return status switch
+        {
+            AtkSystem.Core.Enums.AttendanceStatus.Work => "出勤",
+            AtkSystem.Core.Enums.AttendanceStatus.Absence => "欠席",
+            AtkSystem.Core.Enums.AttendanceStatus.Late => "遅刻",
+            AtkSystem.Core.Enums.AttendanceStatus.EarlyLeave => "早退",
+            _ => status.ToString()
+        };
+    }
+}

@@ -1,0 +1,39 @@
+﻿  蠕ｩ蜈・ｯｾ雎｡縺ｮ繝励Ο繧ｸ繧ｧ繧ｯ繝医ｒ豎ｺ螳壹＠縺ｦ縺・∪縺・..
+  蠕ｩ蜈・ｯｾ雎｡縺ｮ縺吶∋縺ｦ縺ｮ繝励Ο繧ｸ繧ｧ繧ｯ繝医・譛譁ｰ縺ｧ縺吶・
+  AtkSystem.Core -> C:\works\Antigravity\AtkSystem.Core\bin\Debug\net8.0\AtkSystem.Core.dll
+  AtkSystem.Infra -> C:\works\Antigravity\AtkSystem.Infra\bin\Debug\net8.0\AtkSystem.Infra.dll
+C:\works\Antigravity\AtkSystem.Web\Views\Leave\Index.cshtml(82,44): error CS0117: 'LeaveType' 縺ｫ 'PaidLeave' 縺ｮ螳夂ｾｩ縺後≠繧翫∪縺帙ｓ [C:\works\Antigravity\AtkSystem.Web\AtkSystem.Web.csproj]
+C:\works\Antigravity\AtkSystem.Web\Views\Leave\Index.cshtml(83,44): error CS0117: 'LeaveType' 縺ｫ 'SickLeave' 縺ｮ螳夂ｾｩ縺後≠繧翫∪縺帙ｓ [C:\works\Antigravity\AtkSystem.Web\AtkSystem.Web.csproj]
+C:\works\Antigravity\AtkSystem.Web\Views\Leave\Index.cshtml(84,44): error CS0117: 'LeaveType' 縺ｫ 'SpecialLeave' 縺ｮ螳夂ｾｩ縺後≠繧翫∪縺帙ｓ [C:\works\Antigravity\AtkSystem.Web\AtkSystem.Web.csproj]
+C:\works\Antigravity\AtkSystem.Web\Views\Attendance\Index.cshtml(7,57): error CS1061: 'AttendanceRecord' 縺ｫ 'IsOnBreak' 縺ｮ螳夂ｾｩ縺悟性縺ｾ繧後※縺翫ｉ縺壹∝梛 'AttendanceRecord' 縺ｮ譛蛻昴・蠑墓焚繧貞女縺台ｻ倥￠繧九い繧ｯ繧ｻ繧ｹ蜿ｯ閭ｽ縺ｪ諡｡蠑ｵ繝｡繧ｽ繝・ラ 'IsOnBreak' 縺瑚ｦ九▽縺九ｊ縺ｾ縺帙ｓ縺ｧ縺励◆縲Ｖsing 繝・ぅ繝ｬ繧ｯ繝・ぅ繝悶∪縺溘・繧｢繧ｻ繝ｳ繝悶Μ蜿ら・縺御ｸ崎ｶｳ縺励※縺・↑縺・％縺ｨ繧堤｢ｺ隱阪＠縺ｦ縺上□縺輔＞ [C:\works\Antigravity\AtkSystem.Web\AtkSystem.Web.csproj]
+C:\works\Antigravity\AtkSystem.Web\Views\Attendance\Index.cshtml(68,60): error CS1501: 蠑墓焚 1 繧呈欠螳壹☆繧九Γ繧ｽ繝・ラ 'ToString' 縺ｮ繧ｪ繝ｼ繝舌・繝ｭ繝ｼ繝峨・縺ゅｊ縺ｾ縺帙ｓ [C:\works\Antigravity\AtkSystem.Web\AtkSystem.Web.csproj]
+C:\works\Antigravity\AtkSystem.Web\Views\Attendance\Index.cshtml(134,61): error CS1501: 蠑墓焚 1 繧呈欠螳壹☆繧九Γ繧ｽ繝・ラ 'ToString' 縺ｮ繧ｪ繝ｼ繝舌・繝ｭ繝ｼ繝峨・縺ゅｊ縺ｾ縺帙ｓ [C:\works\Antigravity\AtkSystem.Web\AtkSystem.Web.csproj]
+C:\works\Antigravity\AtkSystem.Web\Views\Attendance\Index.cshtml(170,51): error CS0117: 'AttendanceStatus' 縺ｫ 'Present' 縺ｮ螳夂ｾｩ縺後≠繧翫∪縺帙ｓ [C:\works\Antigravity\AtkSystem.Web\AtkSystem.Web.csproj]
+C:\works\Antigravity\AtkSystem.Web\Views\Attendance\Index.cshtml(171,51): error CS0117: 'AttendanceStatus' 縺ｫ 'Absent' 縺ｮ螳夂ｾｩ縺後≠繧翫∪縺帙ｓ [C:\works\Antigravity\AtkSystem.Web\AtkSystem.Web.csproj]
+C:\works\Antigravity\AtkSystem.Web\Views\Attendance\Index.cshtml(182,51): error CS0117: 'AttendanceStatus' 縺ｫ 'Present' 縺ｮ螳夂ｾｩ縺後≠繧翫∪縺帙ｓ [C:\works\Antigravity\AtkSystem.Web\AtkSystem.Web.csproj]
+C:\works\Antigravity\AtkSystem.Web\Views\Attendance\Index.cshtml(183,51): error CS0117: 'AttendanceStatus' 縺ｫ 'Absent' 縺ｮ螳夂ｾｩ縺後≠繧翫∪縺帙ｓ [C:\works\Antigravity\AtkSystem.Web\AtkSystem.Web.csproj]
+C:\works\Antigravity\AtkSystem.Web\Views\Leave\Manage.cshtml(83,44): error CS0117: 'LeaveType' 縺ｫ 'PaidLeave' 縺ｮ螳夂ｾｩ縺後≠繧翫∪縺帙ｓ [C:\works\Antigravity\AtkSystem.Web\AtkSystem.Web.csproj]
+C:\works\Antigravity\AtkSystem.Web\Views\Leave\Manage.cshtml(84,44): error CS0117: 'LeaveType' 縺ｫ 'SickLeave' 縺ｮ螳夂ｾｩ縺後≠繧翫∪縺帙ｓ [C:\works\Antigravity\AtkSystem.Web\AtkSystem.Web.csproj]
+C:\works\Antigravity\AtkSystem.Web\Views\Leave\Manage.cshtml(85,44): error CS0117: 'LeaveType' 縺ｫ 'SpecialLeave' 縺ｮ螳夂ｾｩ縺後≠繧翫∪縺帙ｓ [C:\works\Antigravity\AtkSystem.Web\AtkSystem.Web.csproj]
+
+繝薙Ν繝峨↓螟ｱ謨励＠縺ｾ縺励◆縲・
+
+C:\works\Antigravity\AtkSystem.Web\Views\Leave\Index.cshtml(82,44): error CS0117: 'LeaveType' 縺ｫ 'PaidLeave' 縺ｮ螳夂ｾｩ縺後≠繧翫∪縺帙ｓ [C:\works\Antigravity\AtkSystem.Web\AtkSystem.Web.csproj]
+C:\works\Antigravity\AtkSystem.Web\Views\Leave\Index.cshtml(83,44): error CS0117: 'LeaveType' 縺ｫ 'SickLeave' 縺ｮ螳夂ｾｩ縺後≠繧翫∪縺帙ｓ [C:\works\Antigravity\AtkSystem.Web\AtkSystem.Web.csproj]
+C:\works\Antigravity\AtkSystem.Web\Views\Leave\Index.cshtml(84,44): error CS0117: 'LeaveType' 縺ｫ 'SpecialLeave' 縺ｮ螳夂ｾｩ縺後≠繧翫∪縺帙ｓ [C:\works\Antigravity\AtkSystem.Web\AtkSystem.Web.csproj]
+C:\works\Antigravity\AtkSystem.Web\Views\Attendance\Index.cshtml(7,57): error CS1061: 'AttendanceRecord' 縺ｫ 'IsOnBreak' 縺ｮ螳夂ｾｩ縺悟性縺ｾ繧後※縺翫ｉ縺壹∝梛 'AttendanceRecord' 縺ｮ譛蛻昴・蠑墓焚繧貞女縺台ｻ倥￠繧九い繧ｯ繧ｻ繧ｹ蜿ｯ閭ｽ縺ｪ諡｡蠑ｵ繝｡繧ｽ繝・ラ 'IsOnBreak' 縺瑚ｦ九▽縺九ｊ縺ｾ縺帙ｓ縺ｧ縺励◆縲Ｖsing 繝・ぅ繝ｬ繧ｯ繝・ぅ繝悶∪縺溘・繧｢繧ｻ繝ｳ繝悶Μ蜿ら・縺御ｸ崎ｶｳ縺励※縺・↑縺・％縺ｨ繧堤｢ｺ隱阪＠縺ｦ縺上□縺輔＞ [C:\works\Antigravity\AtkSystem.Web\AtkSystem.Web.csproj]
+C:\works\Antigravity\AtkSystem.Web\Views\Attendance\Index.cshtml(68,60): error CS1501: 蠑墓焚 1 繧呈欠螳壹☆繧九Γ繧ｽ繝・ラ 'ToString' 縺ｮ繧ｪ繝ｼ繝舌・繝ｭ繝ｼ繝峨・縺ゅｊ縺ｾ縺帙ｓ [C:\works\Antigravity\AtkSystem.Web\AtkSystem.Web.csproj]
+C:\works\Antigravity\AtkSystem.Web\Views\Attendance\Index.cshtml(134,61): error CS1501: 蠑墓焚 1 繧呈欠螳壹☆繧九Γ繧ｽ繝・ラ 'ToString' 縺ｮ繧ｪ繝ｼ繝舌・繝ｭ繝ｼ繝峨・縺ゅｊ縺ｾ縺帙ｓ [C:\works\Antigravity\AtkSystem.Web\AtkSystem.Web.csproj]
+C:\works\Antigravity\AtkSystem.Web\Views\Attendance\Index.cshtml(170,51): error CS0117: 'AttendanceStatus' 縺ｫ 'Present' 縺ｮ螳夂ｾｩ縺後≠繧翫∪縺帙ｓ [C:\works\Antigravity\AtkSystem.Web\AtkSystem.Web.csproj]
+C:\works\Antigravity\AtkSystem.Web\Views\Attendance\Index.cshtml(171,51): error CS0117: 'AttendanceStatus' 縺ｫ 'Absent' 縺ｮ螳夂ｾｩ縺後≠繧翫∪縺帙ｓ [C:\works\Antigravity\AtkSystem.Web\AtkSystem.Web.csproj]
+C:\works\Antigravity\AtkSystem.Web\Views\Attendance\Index.cshtml(182,51): error CS0117: 'AttendanceStatus' 縺ｫ 'Present' 縺ｮ螳夂ｾｩ縺後≠繧翫∪縺帙ｓ [C:\works\Antigravity\AtkSystem.Web\AtkSystem.Web.csproj]
+C:\works\Antigravity\AtkSystem.Web\Views\Attendance\Index.cshtml(183,51): error CS0117: 'AttendanceStatus' 縺ｫ 'Absent' 縺ｮ螳夂ｾｩ縺後≠繧翫∪縺帙ｓ [C:\works\Antigravity\AtkSystem.Web\AtkSystem.Web.csproj]
+C:\works\Antigravity\AtkSystem.Web\Views\Leave\Manage.cshtml(83,44): error CS0117: 'LeaveType' 縺ｫ 'PaidLeave' 縺ｮ螳夂ｾｩ縺後≠繧翫∪縺帙ｓ [C:\works\Antigravity\AtkSystem.Web\AtkSystem.Web.csproj]
+C:\works\Antigravity\AtkSystem.Web\Views\Leave\Manage.cshtml(84,44): error CS0117: 'LeaveType' 縺ｫ 'SickLeave' 縺ｮ螳夂ｾｩ縺後≠繧翫∪縺帙ｓ [C:\works\Antigravity\AtkSystem.Web\AtkSystem.Web.csproj]
+C:\works\Antigravity\AtkSystem.Web\Views\Leave\Manage.cshtml(85,44): error CS0117: 'LeaveType' 縺ｫ 'SpecialLeave' 縺ｮ螳夂ｾｩ縺後≠繧翫∪縺帙ｓ [C:\works\Antigravity\AtkSystem.Web\AtkSystem.Web.csproj]
+    0 蛟九・隴ｦ蜻・
+    13 繧ｨ繝ｩ繝ｼ
+
+邨碁℃譎る俣 00:00:01.87
+
+繝ｯ繝ｼ繧ｯ繝ｭ繝ｼ繝峨・譖ｴ譁ｰ縺悟茜逕ｨ蜿ｯ閭ｽ縺ｧ縺吶りｩｳ邏ｰ縺ｫ縺､縺・※縺ｯ縲～dotnet workload list` 繧貞ｮ溯｡後＠縺ｦ縺上□縺輔＞縲・
